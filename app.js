@@ -1,13 +1,12 @@
-var request = require("request");
-var express = require("express");
-var cheerio = require("cheerio");
+const request = require("request");
+const express = require("express");
+const cheerio = require("cheerio");
+const fs = require("fs");
+const app = express();
+const port = 8080;
 
-var fs = require("fs");
-var app = express();
-var port = 8080;
-
-var url = "https://hiverhq.com";
-var wordsList = {};
+const url = "https://hiverhq.com";
+let wordsList = {};
 
 
 request(url, function(err, resp, body) {
