@@ -7,7 +7,7 @@ var app = express();
 var port = 8080;
 
 var url = "https://hiverhq.com";
-var corpus = {};
+var wordsList = {};
 
 
 request(url, function(err, resp, body) {
@@ -19,15 +19,15 @@ request(url, function(err, resp, body) {
     text.split(" ").forEach(function(word) {
 
         if (word !== '') {
-            if (corpus[word]) {
-                corpus[word]++;
+            if (wordsList[word]) {
+                wordsList[word]++;
             } else {
-                corpus[word] = 1;
+                wordsList[word] = 1;
             }
         }
     });
 
-    let sorteData = Object.keys(corpus).sort((a, b) => corpus[b] - corpus[a]);
+    let sorteData = Object.keys(wordsList).sort((a, b) => wordsList[b] - wordsList[a]);
 
     fs.writeFileSync("./downloads/topfive.json", sorteData.splice(0, 5));
 
